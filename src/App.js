@@ -13,14 +13,10 @@ class App extends Component {
       count:0
     }
   }
-  handleChange=(event)=>{
-    this.setState({text:event.target.value})
-    
-  
-  }
-  handlesubmit=(event)=>{
-    this.setState({count:this.state.text.split(" ").length})
-    event.preventDefault();
+
+  handleChange = async function(event) {
+
+    await this.setState({text: event.target.value});
   }
     
   render() { 
@@ -33,17 +29,22 @@ class App extends Component {
         <div className="row">
         <div className="input col-md-6 col-12">
         <form onSubmit={this.handlesubmit}>
-          <textarea className="textarea" placeholder="Type or Paste content and Press Enter"name="w3review"
-           rows="15" cols="60" 
-          onChange={this.handleChange} value={this.state.text}></textarea>
+          <div className="textarea">
+          <span>
+          <textarea className="form-control" placeholder="Type or Paste content and Press Enter"name="w3review"
+           rows="15"
+          onChange={(e)=>{this.handleChange(e)}} value={this.state.text}></textarea>
           <br></br>
-          <input type="submit" className="btn btn-info" value="Submit" />
+          </span>
+         </div>
       
       </form>
         </div>
         <div className="output col-md-6 col-12"> 
              <h1>No of Words</h1>
-         <h3>{this.state.count}</h3>
+    <h3>{this.state.text.split(" ").length-1}</h3>
+    <h1>no of characters</h1>
+    <h3>{this.state.text.length}</h3>
         </div>
 
         </div>
